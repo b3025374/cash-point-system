@@ -1,0 +1,15 @@
+BANK
+001
+00-44
+12/12/2000
+158.88
+ 7/ 3/2012 12:36:59 deposit_to_ATM 1
+ 7/ 3/2012 12:36:44 withdrawal_from_ATM -12
+16/ 2/2011 07:44:32 deposit_to_ATM 5
+16/ 2/2011 07:44:24 withdrawal_from_ATM -12
+ 3/ 2/2011 08:41:52 withdrawal_from_ATM -123.45
+28/ 1/2011 10:37:55 deposit_to_ATM 12.33
+28/ 1/2010 10:36:41 withdrawal_from_ATM -2
+20/ 9/2009 14:29:52 withdrawal_from_ATM -2
+10/ 2/2009 19:19:59 deposit_to_ATM 12
+10/ 2/2009 19:19:47 withdrawal_from_ATM -10
