@@ -28,16 +28,7 @@ void TransactionList::deleteFirstTransaction() {
     listOfTransactions_.deleteFirst();
 }
 void TransactionList::deleteGivenTransaction( const Transaction& tr) {
-    //listOfTransactions_.deleteOne( tr);
-	//assert( *this.size() != 0);
-	if ( newestTransaction() == tr)
-	*this = olderTransactions();
-	else
-	{
-	Transaction firstTr( newestTransaction());
-	olderTransactions().deleteGivenTransaction( tr);
-	this->addNewTransaction( firstTr);
-	}
+    listOfTransactions_.deleteOne( tr);
 }
 int TransactionList::size() const {
     return (listOfTransactions_.length());

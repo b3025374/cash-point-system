@@ -146,10 +146,6 @@ void UserInterface::showDepositOnScreen( bool trAuthorised, double amountDeposit
 		cout << "\nTRANSACTION IMPOSSIBLE!";
 }
 void UserInterface::showAllDepositsOnScreen( const bool noTrans, const string str, const double total) const {
-	Time t1( Time::currentTime());
-	Time t(t1 + Time(0, 0, 12));
-	Time t2(
-
 	if(!noTrans) {
 		Time t( Time::currentTime());
 		Date d( Date::currentDate());
