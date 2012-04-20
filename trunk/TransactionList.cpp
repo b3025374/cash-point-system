@@ -81,7 +81,25 @@ TransactionList TransactionList::getAllDepositTransactions() const {
 	}
 	return deposits;
 }
+TransactionList TransactionList::getMostRecentTransactions(int n) const{
+	TransactionList trl;
+	TransactionList copy(*this);
+	Transaction temp;
 
+	if (n < size()) // If there are more availiable transaction than requested
+	{				// produce a list of them
+		for(int i(0); i < n; i++) {
+			trl.addNewTransaction(copy.newestTransaction());
+			copy.deleteFirstTransaction();
+		}
+	} else { //else get all availiable and display how many
+		for(int i(0); i < size(); i++) {
+			trl.addNewTransaction(copy.newestTransaction());
+			copy.deleteFirstTransaction();
+		}
+	}
+	return trl;
+}
 double TransactionList::getTotalTransactions() const {
 	double total( 0);
 	TransactionList copy(*this);

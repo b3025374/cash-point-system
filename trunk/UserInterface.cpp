@@ -40,6 +40,10 @@ int UserInterface::readInAccountProcessingCommand() const{
     showAccountProcessingMenu();
     return ( readInCommand());
 }
+int UserInterface::readInNumberOfTransactions() const {
+	cout << "ENTER THE NUMBER OF TRANSACTIONS REQUIRED: ";
+	return readInPositiveNumber();
+}
 void UserInterface::showAccountProcessingMenu() const {
 	cout << "\n\n\n      ________________________________________";
 	cout << "\n      ________ACCOUNT PROCESSING MENU________";
@@ -50,7 +54,7 @@ void UserInterface::showAccountProcessingMenu() const {
 	cout << "\n       3                 Deposit into account";
 	cout << "\n       4                       Show statement";
 	cout << "\n       5                    Show all deposits";
-	cout << "\n       6                  Show mini statement  //TO BE IMPLEMENTED FOR ASS 2";
+	cout << "\n       6                  Show mini statement";
 	cout << "\n       7    Show all transations above amount  //TO BE IMPLEMENTED FOR ASS 2";
 	cout << "\n       8    Clear all transactions up to date  //TO BE IMPLEMENTED FOR ASS 2";
 	cout << "\n       9          Transfer to another account  //TO BE IMPLEMENTED FOR ASS 2";
@@ -71,7 +75,7 @@ void UserInterface::showValidateCardOnScreen( bool valid, const string& cashCard
         cout << "\nERROR: INVALID CARD\n"
              << "\nTHE CARD (NUMBER: " << cashCardNum << ") DOES NOT EXIST!";
     else   //card exists
-        cout << "\nTHE CARD (NUMBER: " << cashCardNum << ") EXIST!";
+        cout << "\nTHE CARD (NUMBER: " << cashCardNum << ") EXISTS!";
 }
 
 void UserInterface::showCardOnScreen( const string& aCardDetails) const {
@@ -155,7 +159,16 @@ void UserInterface::showAllDepositsOnScreen( const bool noTrans, const string st
 	else
 		cout << "NO TRANSACTIONS IN BANK ACCOUNT";
 }
-
+void UserInterface::showMiniStatementOnScreen( const bool noTrans, const string str, const double total) const {
+	if(!noTrans) {
+		Time t( Time::currentTime());
+		Date d( Date::currentDate());
+		string s( "RECENT TRANSACTIONS REQUESTED AT " + t.toFormattedString() + " ON " + d.toFormattedString() + "\n" + str + " TOTAL: ");
+		cout << s << 156 << total;
+	}
+	else
+		cout << "NO TRANSACTIONS IN BANK ACCOUNT";
+}
 void UserInterface::showStatementOnScreen( const string& statement) const {
     cout << "\nPREPARING STATEMENT...";
     cout << "\n________ ACCOUNT STATEMENT _____";
@@ -184,6 +197,16 @@ void UserInterface::showErrorInvalidCommand() const {
 }
 double UserInterface::readInPositiveAmount() const {
     double amount;
+	cin >> amount;
+	while ( amount <= 0.0)
+    {
+	    cout << "\nAMOUNT SHOULD BE A POSITIVE AMOUNT, TRY AGAIN: ";
+		cin >> amount;
+	}
+    return amount;
+}
+int UserInterface::readInPositiveNumber() const {
+    int amount;
 	cin >> amount;
 	while ( amount <= 0.0)
     {
