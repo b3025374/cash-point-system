@@ -138,7 +138,9 @@ void CashPoint::performAccountProcessingCommand( int option) {
 		case 4:	m4_produceStatement();
 				break;
 		case 5: m5_showAllDepositTransactions();
-			break;
+				break;
+		case 6: m6_showMiniStatement();
+				break;
 		default:theUI_.showErrorInvalidCommand();
 	}
 }
@@ -168,7 +170,7 @@ void CashPoint::m3_depositToBankAccount() {
 void CashPoint::m4_produceStatement() const {
 	theUI_.showStatementOnScreen( p_theActiveAccount_->prepareFormattedStatement());
 }
-
+//---option 5
 void CashPoint::m5_showAllDepositTransactions() const {
 	bool noTransaction( p_theActiveAccount_->isEmptyTransactionList());
 	string s;
@@ -178,7 +180,17 @@ void CashPoint::m5_showAllDepositTransactions() const {
 		theUI_.showAllDepositsOnScreen(noTransaction, s, d);
 	}
 }
-
+//---option 6
+void CashPoint::m6_showMiniStatement() const {
+	bool noTransaction( p_theActiveAccount_->isEmptyTransactionList());
+	string s;
+	double d;
+	if( !noTransaction) {
+		int num = theUI_.readInNumberOfTransactions();
+		p_theActiveAccount_->produceMostRecentTransactions(num, s, d);
+		theUI_.showMiniStatementOnScreen(noTransaction,s,d);
+	}
+}
 //------private file functions
 
 bool CashPoint::canOpenFile( const string& st) const {

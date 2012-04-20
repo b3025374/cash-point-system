@@ -25,6 +25,7 @@ public:
 
 	int		readInCardIdentificationCommand() const;
 	int		readInAccountProcessingCommand() const;
+	int		readInNumberOfTransactions() const;
 
 	void	showErrorInvalidCommand() const;
     void	wait() const;
@@ -36,12 +37,14 @@ public:
 
     double	readInWithdrawalAmount() const;
     double	readInDepositAmount() const;
+	double	readInAmount() const;
 
     void	showProduceBalanceOnScreen( double bal) const;
     void	showDepositOnScreen( bool auth, double deposit) const;
     void	showWithdrawalOnScreen( bool auth, double withdrawal) const;
     void	showStatementOnScreen( const string&) const;
-	void showAllDepositsOnScreen( const bool noTrans, const string str, const double total) const;
+	void	showAllDepositsOnScreen( const bool noTrans, const string str, const double total) const;
+	void	showMiniStatementOnScreen( const bool noTrans, const string str, const double total) const;
 
 private:
     //support functions
@@ -49,6 +52,7 @@ private:
 	void	showAccountProcessingMenu() const;
     int		readInCommand() const;
     double	readInPositiveAmount() const;
+	int		readInPositiveNumber() const;
 };
 
 #endif
