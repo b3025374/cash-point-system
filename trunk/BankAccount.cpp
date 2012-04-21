@@ -159,10 +159,15 @@ void BankAccount::produceAllDepositTransactions(string& s, double& d) {
 	d = trl.getTotalTransactions();
 	s = trl.toFormattedString();
 }
-void BankAccount::produceMostRecentTransactions(int n, string& s, double& d) {
+void BankAccount::produceMostRecentTransactions(const int n, string& s, double& d) {
 	TransactionList trl = transactions_.getMostRecentTransactions(n);
 	d = trl.getTotalTransactions();
 	s = trl.toFormattedString();
+}
+void BankAccount::produceTransactionsForAmount(const double a, string& str, int& n) {
+	TransactionList trl = transactions_.getTransactionsForAmount(a);
+	n = trl.getNumberOfTransactions();
+	str = trl.toFormattedString();
 }
 //---------------------------------------------------------------------------
 //non-member operator functions

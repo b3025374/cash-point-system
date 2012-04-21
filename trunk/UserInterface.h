@@ -38,6 +38,7 @@ public:
     double	readInWithdrawalAmount() const;
     double	readInDepositAmount() const;
 	double	readInAmount() const;
+	int		readInSearch(const bool noTrans) const;
 
     void	showProduceBalanceOnScreen( double bal) const;
     void	showDepositOnScreen( bool auth, double deposit) const;
@@ -45,6 +46,7 @@ public:
     void	showStatementOnScreen( const string&) const;
 	void	showAllDepositsOnScreen( const bool noTrans, const string str, const double total) const;
 	void	showMiniStatementOnScreen( const bool noTrans, const string str, const double total) const;
+	void	showMatchingTransactionsOnScreen(const double a, const int n, const string str) const;
 
 private:
     //support functions
