@@ -100,6 +100,19 @@ TransactionList TransactionList::getMostRecentTransactions(int n) const{
 	}
 	return trl;
 }
+TransactionList TransactionList::getTransactionsForAmount(double a) const {
+	TransactionList trl;
+	TransactionList copy(*this);
+	Transaction temp;
+
+	for(int i(0); i < size(); i++) {
+		temp = copy.newestTransaction();
+		if(temp.getAmount() == a)
+			trl.addNewTransaction(temp);
+		copy.deleteFirstTransaction();
+	}
+	return trl;
+}
 double TransactionList::getTotalTransactions() const {
 	double total( 0);
 	TransactionList copy(*this);
@@ -112,6 +125,9 @@ double TransactionList::getTotalTransactions() const {
 		copy.deleteFirstTransaction();
 	}
 	return total;
+}
+int TransactionList::getNumberOfTransactions() const {
+	return size();
 }
 
 //---------------------------------------------------------------------------

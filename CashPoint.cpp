@@ -141,6 +141,8 @@ void CashPoint::performAccountProcessingCommand( int option) {
 				break;
 		case 6: m6_showMiniStatement();
 				break;
+		case 7: m7_seachTransactions();
+				break;
 		default:theUI_.showErrorInvalidCommand();
 	}
 }
@@ -177,8 +179,8 @@ void CashPoint::m5_showAllDepositTransactions() const {
 	double d;
 	if( !noTransaction) {
 		p_theActiveAccount_->produceAllDepositTransactions(s, d);
-		theUI_.showAllDepositsOnScreen(noTransaction, s, d);
 	}
+	theUI_.showAllDepositsOnScreen(noTransaction, s, d);
 }
 //---option 6
 void CashPoint::m6_showMiniStatement() const {
@@ -188,8 +190,38 @@ void CashPoint::m6_showMiniStatement() const {
 	if( !noTransaction) {
 		int num = theUI_.readInNumberOfTransactions();
 		p_theActiveAccount_->produceMostRecentTransactions(num, s, d);
-		theUI_.showMiniStatementOnScreen(noTransaction,s,d);
 	}
+	theUI_.showMiniStatementOnScreen(noTransaction,s,d);
+}
+//---option 7
+void CashPoint::m7_seachTransactions() const {
+	bool noTransaction( p_theActiveAccount_->isEmptyTransactionList());
+	if ( !noTransaction)
+	{
+		int choice = theUI_.readInSearch(noTransaction);
+		switch (choice) {
+		case 0:
+			break;
+		case 1:
+			m7a_showTransactionsForAmount();
+			break;
+		case 2: 
+			//Search by title/subtitle
+			theUI_.showErrorInvalidCommand();
+			break;
+		case 3:
+			//Search by date
+			theUI_.showErrorInvalidCommand();
+			break;
+		}
+	}
+}
+void CashPoint::m7a_showTransactionsForAmount() const {
+	string str;
+	int n;
+	double a = theUI_.readInAmount();
+	p_theActiveAccount_->produceTransactionsForAmount(a,str,n);
+	theUI_.showMatchingTransactionsOnScreen(a,n,str);
 }
 //------private file functions
 

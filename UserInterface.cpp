@@ -55,7 +55,7 @@ void UserInterface::showAccountProcessingMenu() const {
 	cout << "\n       4                       Show statement";
 	cout << "\n       5                    Show all deposits";
 	cout << "\n       6                  Show mini statement";
-	cout << "\n       7    Show all transations above amount  //TO BE IMPLEMENTED FOR ASS 2";
+	cout << "\n       7    Show all transations above amount";
 	cout << "\n       8    Clear all transactions up to date  //TO BE IMPLEMENTED FOR ASS 2";
 	cout << "\n       9          Transfer to another account  //TO BE IMPLEMENTED FOR ASS 2";
 	cout << "\n         ________________________________________";
@@ -128,6 +128,29 @@ double UserInterface::readInDepositAmount() const {
     cout << "\nAMOUNT TO DEPOSIT: \234" ;
 	return ( readInPositiveAmount());
 }
+double UserInterface::readInAmount() const {
+	cout << "\nENTER AMOUNT: \234";
+    double amount;
+	cin >> amount;
+    return amount;
+}
+int UserInterface::readInSearch(const bool noTrans) const {
+	int num = 0;
+	if( !noTrans)
+	{
+		cout << "ENTER SEARCH CRITERIA (0 - cancel search, 1 - search by amount, 2 - search by title/subtitle, 3 - search by date): ";
+		cin >> num;
+		while (num < 0 || num > 3)
+		{
+			cout << "INVALID SEARCH. ENTER SEARCH CRITERIA: ";
+			cin >> num;
+		}
+	}
+	else
+		cout << "NO TRANSACTIONS IN BANK ACCOUNT";
+	return num;
+}
+
 //output functions
 
 void UserInterface::showProduceBalanceOnScreen( double balance) const {
@@ -169,6 +192,13 @@ void UserInterface::showMiniStatementOnScreen( const bool noTrans, const string 
 	else
 		cout << "NO TRANSACTIONS IN BANK ACCOUNT";
 }
+void UserInterface::showMatchingTransactionsOnScreen(const double a, const int n, const string str) const {
+	Time t( Time::currentTime());
+	Date d( Date::currentDate());
+	string s( "SEARCH REQUESTED AT " + t.toFormattedString() + " ON " + d.toFormattedString() + "\n" + str);
+	cout << s << "FOUND " << n << " TRANSACTIONS IN BANK ACCOUNT MATCHING THAT SEARCH CRITERION";
+}
+
 void UserInterface::showStatementOnScreen( const string& statement) const {
     cout << "\nPREPARING STATEMENT...";
     cout << "\n________ ACCOUNT STATEMENT _____";
