@@ -34,10 +34,13 @@ public:
 	void	showCardOnScreen( const string& cardSt) const;
 	const string  readInAccountToBeProcessed( string& aNum, string& sCod) const;
 	void	showValidateAccountOnScreen( int valid, const string& aNum, const string& sCod) const;
+	void	showNoTransactionsOnScreen() const;
 
     double	readInWithdrawalAmount() const;
     double	readInDepositAmount() const;
 	double	readInAmount() const;
+	string	readInSearchTitle() const;
+	Date	readInDate() const;
 	int		readInSearch(const bool noTrans) const;
 
     void	showProduceBalanceOnScreen( double bal) const;
@@ -46,7 +49,8 @@ public:
     void	showStatementOnScreen( const string&) const;
 	void	showAllDepositsOnScreen( const bool noTrans, const string str, const double total) const;
 	void	showMiniStatementOnScreen( const bool noTrans, const string str, const double total) const;
-	void	showMatchingTransactionsOnScreen(const double a, const int n, const string str) const;
+	template <class TYPE>
+	void	showMatchingTransactionsOnScreen(const TYPE& a, const int n, const string str) const;
 
 private:
     //support functions
@@ -56,5 +60,13 @@ private:
     double	readInPositiveAmount() const;
 	int		readInPositiveNumber() const;
 };
+
+template <class TYPE>
+void UserInterface::showMatchingTransactionsOnScreen(const TYPE& a, const int n, const string str) const {
+	Time time( Time::currentTime());
+	Date d( Date::currentDate());
+	string s( "SEARCH REQUESTED AT " + time.toFormattedString() + " ON " + d.toFormattedString() + "\n" + str);
+	cout << s << "FOUND " << n << " TRANSACTIONS IN BANK ACCOUNT MATCHING THE SEARCH CRITERION " << a;
+}
 
 #endif

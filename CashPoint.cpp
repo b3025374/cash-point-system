@@ -207,21 +207,37 @@ void CashPoint::m7_seachTransactions() const {
 			break;
 		case 2: 
 			//Search by title/subtitle
-			theUI_.showErrorInvalidCommand();
+			m7b_showTransactionsForTitle();
 			break;
 		case 3:
 			//Search by date
-			theUI_.showErrorInvalidCommand();
+			m7c_showTransactionsForDate();
 			break;
 		}
 	}
+	else
+		theUI_.showNoTransactionsOnScreen();
 }
 void CashPoint::m7a_showTransactionsForAmount() const {
 	string str;
 	int n;
 	double a = theUI_.readInAmount();
 	p_theActiveAccount_->produceTransactionsForAmount(a,str,n);
-	theUI_.showMatchingTransactionsOnScreen(a,n,str);
+	theUI_.showMatchingTransactionsOnScreen(a, n, str);
+}
+void CashPoint::m7b_showTransactionsForTitle() const {
+	string str;
+	int n;
+	string title = theUI_.readInSearchTitle();
+	p_theActiveAccount_->produceTransactionsForTitle(title,str,n);
+	theUI_.showMatchingTransactionsOnScreen<string>(title, n,str);
+}
+void CashPoint::m7c_showTransactionsForDate() const {
+	string str;
+	int n;
+	Date d = theUI_.readInDate();
+	p_theActiveAccount_->produceTransactionsForDate(d,str,n);
+	theUI_.showMatchingTransactionsOnScreen<Date>(d, n,str);
 }
 //------private file functions
 
