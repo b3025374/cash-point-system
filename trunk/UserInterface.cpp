@@ -116,6 +116,10 @@ void UserInterface::showValidateAccountOnScreen( int validCode, const string& ac
     }
 }
 
+void UserInterface::showNoTransactionsOnScreen() const {
+	 cout << "\nNO TRANSACTIONS IN BANK ACCOUNT" ;
+}
+
 //input functions
 
 double UserInterface::readInWithdrawalAmount() const {
@@ -133,6 +137,19 @@ double UserInterface::readInAmount() const {
     double amount;
 	cin >> amount;
     return amount;
+}
+string UserInterface::readInSearchTitle() const {
+	cout << "\nENTER SEARCH CRITERIA: ";
+	string criteria;
+	cin >> criteria;
+	return criteria;
+}
+Date UserInterface::readInDate() const {
+	cout << "\nENTER DATE (DD MM YYYY): ";
+	int d, m, y;
+	cin >> d >> m >> y;
+	Date date(d, m, y);
+	return date;
 }
 int UserInterface::readInSearch(const bool noTrans) const {
 	int num = 0;
@@ -192,12 +209,13 @@ void UserInterface::showMiniStatementOnScreen( const bool noTrans, const string 
 	else
 		cout << "NO TRANSACTIONS IN BANK ACCOUNT";
 }
-void UserInterface::showMatchingTransactionsOnScreen(const double a, const int n, const string str) const {
-	Time t( Time::currentTime());
-	Date d( Date::currentDate());
-	string s( "SEARCH REQUESTED AT " + t.toFormattedString() + " ON " + d.toFormattedString() + "\n" + str);
-	cout << s << "FOUND " << n << " TRANSACTIONS IN BANK ACCOUNT MATCHING THAT SEARCH CRITERION";
-}
+//template <class TYPE>
+//void UserInterface::showMatchingTransactionsOnScreen(const TYPE& a, const int n, const string str) const {
+//	Time time( Time::currentTime());
+//	Date d( Date::currentDate());
+//	string s( "SEARCH REQUESTED AT " + time.toFormattedString() + " ON " + d.toFormattedString() + "\n" + str);
+//	cout << s << "FOUND " << n << " TRANSACTIONS IN BANK ACCOUNT MATCHING THE SEARCH CRITERION " << a;
+//}
 
 void UserInterface::showStatementOnScreen( const string& statement) const {
     cout << "\nPREPARING STATEMENT...";

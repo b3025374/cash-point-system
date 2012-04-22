@@ -25,7 +25,9 @@ public:
 	int    size() const;
 	TransactionList getAllDepositTransactions() const;
 	TransactionList getMostRecentTransactions(int n) const;
-	TransactionList getTransactionsForAmount(double a) const;
+	TransactionList getTransactionsForAmount(const double a) const;
+	TransactionList getTransactionsForTitle(const string title) const;
+	TransactionList getTransactionsForDate(const Date d) const;
 	double getTotalTransactions() const;
 	int	getNumberOfTransactions() const;
 

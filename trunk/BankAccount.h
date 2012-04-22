@@ -36,6 +36,8 @@ public:
 	void produceAllDepositTransactions(string& s, double& d);
 	void produceMostRecentTransactions(const int n, string& s, double& d);
 	void produceTransactionsForAmount(const double a, string& str, int& n);
+	void produceTransactionsForTitle(const string title, string& str, int& n);
+	void produceTransactionsForDate(const Date d, string& str, int& n);
 
 	//functions to put data into and get data from streams
 	ostream& putDataInStream( ostream& os) const;

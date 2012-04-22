@@ -169,6 +169,16 @@ void BankAccount::produceTransactionsForAmount(const double a, string& str, int&
 	n = trl.getNumberOfTransactions();
 	str = trl.toFormattedString();
 }
+void BankAccount::produceTransactionsForTitle(const string title, string& str, int& n) {
+	TransactionList trl = transactions_.getTransactionsForTitle(title);
+	n = trl.getNumberOfTransactions();
+	str = trl.toFormattedString();
+}
+void BankAccount::produceTransactionsForDate(const Date d, string& str, int& n) {
+	TransactionList trl = transactions_.getTransactionsForDate(d);
+	n = trl.getNumberOfTransactions();
+	str = trl.toFormattedString();
+}
 //---------------------------------------------------------------------------
 //non-member operator functions
 //---------------------------------------------------------------------------

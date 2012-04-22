@@ -100,7 +100,7 @@ TransactionList TransactionList::getMostRecentTransactions(int n) const{
 	}
 	return trl;
 }
-TransactionList TransactionList::getTransactionsForAmount(double a) const {
+TransactionList TransactionList::getTransactionsForAmount(const double a) const {
 	TransactionList trl;
 	TransactionList copy(*this);
 	Transaction temp;
@@ -108,6 +108,34 @@ TransactionList TransactionList::getTransactionsForAmount(double a) const {
 	for(int i(0); i < size(); i++) {
 		temp = copy.newestTransaction();
 		if(temp.getAmount() == a)
+			trl.addNewTransaction(temp);
+		copy.deleteFirstTransaction();
+	}
+	return trl;
+}
+TransactionList TransactionList::getTransactionsForTitle(const string title) const {
+	TransactionList trl;
+	TransactionList copy(*this);
+	Transaction temp;
+	size_t found;
+
+	for(int i(0); i < size(); i++) {
+		temp = copy.newestTransaction();
+		found = temp.getTitle().find(title, 0);		// search string for key words. returns npos if not found
+		if(found != string::npos)
+			trl.addNewTransaction(temp);			// if found, add to the list
+		copy.deleteFirstTransaction();
+	}
+	return trl;
+}
+TransactionList TransactionList::getTransactionsForDate(const Date d) const {
+	TransactionList trl;
+	TransactionList copy(*this);
+	Transaction temp;
+
+	for(int i(0); i < size(); i++) {
+		temp = copy.newestTransaction();
+		if(temp.getDate() == d)
 			trl.addNewTransaction(temp);
 		copy.deleteFirstTransaction();
 	}
