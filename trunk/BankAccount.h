@@ -39,6 +39,7 @@ public:
 	void produceTransactionsForTitle(const string title, string& str, int& n);
 	void produceTransactionsForDate(const Date d, string& str, int& n);
 	void produceTransactionsUpToDate(const Date d, string& str, int& i);
+	void recordDeletionOfTransactionUpToDate(const Date d);
 
 	//functions to put data into and get data from streams
 	ostream& putDataInStream( ostream& os) const;

@@ -143,6 +143,8 @@ void CashPoint::performAccountProcessingCommand( int option) {
 				break;
 		case 7: m7_seachTransactions();
 				break;
+		case 8: m8_clearAllTransactionsUpToDate();
+				break;
 		default:theUI_.showErrorInvalidCommand();
 	}
 }
@@ -176,7 +178,7 @@ void CashPoint::m4_produceStatement() const {
 void CashPoint::m5_showAllDepositTransactions() const {
 	bool noTransaction( p_theActiveAccount_->isEmptyTransactionList());
 	string s;
-	double d;
+	double d = 0;
 	if( !noTransaction) {
 		p_theActiveAccount_->produceAllDepositTransactions(s, d);
 	}
@@ -186,7 +188,7 @@ void CashPoint::m5_showAllDepositTransactions() const {
 void CashPoint::m6_showMiniStatement() const {
 	bool noTransaction( p_theActiveAccount_->isEmptyTransactionList());
 	string s;
-	double d;
+	double d = 0;
 	if( !noTransaction) {
 		int num = theUI_.readInNumberOfTransactions();
 		p_theActiveAccount_->produceMostRecentTransactions(num, s, d);
@@ -243,10 +245,11 @@ void CashPoint::m7c_showTransactionsForDate() const {
 void CashPoint::m8_clearAllTransactionsUpToDate() const {
 	string str;
 	int i;
+	Date d;
 	bool noTransaction = p_theActiveAccount_->isEmptyTransactionList();
 	if (!noTransaction) {
 		Date cd = p_theActiveAccount_->getCreationDate();
-		Date d = theUI_.readInValidDate(cd);
+		d = theUI_.readInValidDate(cd);
 		p_theActiveAccount_->produceTransactionsUpToDate(d, str, i);
 	}
 	theUI_.showTransactionsUpToDateOnScreen(noTransaction, d, i, str);
