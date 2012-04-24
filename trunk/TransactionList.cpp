@@ -173,27 +173,15 @@ int TransactionList::getNumberOfTransactions() const {
 }
 
 void TransactionList::deleteTransactionsUpToDate(const Date d) {
-	//TransactionList copy(*this);
 	TransactionList copy = getTransactionsUpToDate(d);
 	Transaction temp;
-
-	for (int i(0); i < copy.size(); i++)
+	int size = copy.size();
+	for (int i(0); i < size; i++)
 	{
 		temp = copy.newestTransaction();
 		deleteGivenTransaction(temp);
 		copy.deleteFirstTransaction();
 	}
-
-	//for (int i = 0; i < size(); i++)
-	//	deleteFirstTransaction();
-
-
-	//for(int i(0); i < copy.size(); i++) {
-	//	temp = copy.newestTransaction();
-	//	if(!(temp.getDate() < d && temp.getDate() == d))
-	//		deleteGivenTransaction(temp);
-	//	copy.deleteFirstTransaction();
-	//}
 }
 
 //---------------------------------------------------------------------------
