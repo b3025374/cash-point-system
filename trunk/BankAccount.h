@@ -38,6 +38,7 @@ public:
 	void produceTransactionsForAmount(const double a, string& str, int& n);
 	void produceTransactionsForTitle(const string title, string& str, int& n);
 	void produceTransactionsForDate(const Date d, string& str, int& n);
+	void produceTransactionsUpToDate(const Date d, string& str, int& i);
 
 	//functions to put data into and get data from streams
 	ostream& putDataInStream( ostream& os) const;
