@@ -205,7 +205,7 @@ bool UserInterface::readInConfimedDeletion() const {
 	cout << "ARE YOU SURE YOU WANT TO DELETE DISPLAYED TRANSACTIONS (Y/N): \n";
 	char c;
 	cin >> c;
-	while (toupper(c) != 'Y' || toupper(c) != 'N')
+	while (toupper(c) != 'Y' && toupper(c) != 'N')
 	{
 		cout << "INVALID CHOICE. PLEASE ENTER Y OR N: \n";
 		cin >> c;

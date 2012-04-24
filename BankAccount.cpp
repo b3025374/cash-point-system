@@ -185,6 +185,10 @@ void BankAccount::produceTransactionsUpToDate(const Date d, string& str, int& i)
 	i = trl.size();
 	str = trl.toFormattedString();
 }
+
+void BankAccount::recordDeletionOfTransactionUpToDate(const Date d) {
+	transactions_.deleteTransactionsUpToDate(d);
+}
 //---------------------------------------------------------------------------
 //non-member operator functions
 //---------------------------------------------------------------------------

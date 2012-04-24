@@ -31,6 +31,7 @@ public:
 	TransactionList getTransactionsUpToDate(const Date d) const;
 	double getTotalTransactions() const;
 	int	getNumberOfTransactions() const;
+	void deleteTransactionsUpToDate(const Date d);
 
 
 	const string toFormattedString() const;		//return transactionlist as a (formatted) string
