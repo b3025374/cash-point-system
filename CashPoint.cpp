@@ -239,6 +239,25 @@ void CashPoint::m7c_showTransactionsForDate() const {
 	p_theActiveAccount_->produceTransactionsForDate(d,str,n);
 	theUI_.showMatchingTransactionsOnScreen<Date>(d, n,str);
 }
+//option 8
+void CashPoint::m8_clearAllTransactionsUpToDate() const {
+	string str;
+	int i;
+	bool noTransaction = p_theActiveAccount_->isEmptyTransactionList();
+	if (!noTransaction) {
+		Date cd = p_theActiveAccount_->getCreationDate();
+		Date d = theUI_.readInValidDate(cd);
+		p_theActiveAccount_->produceTransactionsUpToDate(d, str, i);
+	}
+	theUI_.showTransactionsUpToDateOnScreen(noTransaction, d, i, str);
+	if (!noTransaction && !str.empty())
+	{
+		bool deletionConfirmed = theUI_.readInConfimedDeletion();
+		if (deletionConfirmed)
+			p_theActiveAccount_->recordDeletionOfTransactionUpToDate(d);
+		theUI_.showDeletionOfTransactionUpToDateOnScreen(i,d,deletionConfirmed);
+	}
+}
 //------private file functions
 
 bool CashPoint::canOpenFile( const string& st) const {

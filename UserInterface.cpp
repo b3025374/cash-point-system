@@ -120,6 +120,24 @@ void UserInterface::showNoTransactionsOnScreen() const {
 	 cout << "\nNO TRANSACTIONS IN BANK ACCOUNT" ;
 }
 
+void UserInterface::showTransactionsUpToDateOnScreen(const bool noTransaction, const Date d, const int i, const string str) const {
+	if (noTransaction)
+	{
+		cout << "\nNO TRANSACTIONS IN BANK ACCOUNT UP TO DATE:" << d << "\n"; 
+	} else {
+		cout << "\n" << i << " TRANSACTIONS FOUND FOR DATE: " << d << "\n" << str << "\n";
+	}
+}
+
+void UserInterface::showDeletionOfTransactionUpToDateOnScreen(const int i, const Date d, const bool deletionConfirmed) const {
+	if (deletionConfirmed)
+	{
+		cout << "THE " << i << " TRANSACTIONS IN BANK ACCOUNT UP TO DATE " << d << " HAVE BEEN DELETED\n";
+	} else {
+		cout << "OPERATION CANCELED\n";
+	}
+}
+
 //input functions
 
 double UserInterface::readInWithdrawalAmount() const {
@@ -166,6 +184,36 @@ int UserInterface::readInSearch(const bool noTrans) const {
 	else
 		cout << "NO TRANSACTIONS IN BANK ACCOUNT";
 	return num;
+}
+
+Date UserInterface::readInValidDate(const Date cd) const {
+	cout << "ENTER A DATE: (dd:mm:yy)";
+	int day,month,year;
+	cin >> day >> month >> year;
+	Date date(day,month,year);
+	while (!date.isValid(cd))
+	{
+		cout << "ENTER A DATE: (dd:mm:yy)";
+		int day,month,year;
+		cin >> day >> month >> year;
+		date.setDate(day,month,year);
+	}
+	return date;
+}
+
+bool UserInterface::readInConfimedDeletion() const {
+	cout << "ARE YOU SURE YOU WANT TO DELETE DISPLAYED TRANSACTIONS (Y/N): \n";
+	char c;
+	cin >> c;
+	while (toupper(c) != 'Y' || toupper(c) != 'N')
+	{
+		cout << "INVALID CHOICE. PLEASE ENTER Y OR N: \n";
+		cin >> c;
+	}
+	if (toupper(c) == 'Y')
+		return true;
+	else
+		return false;
 }
 
 //output functions

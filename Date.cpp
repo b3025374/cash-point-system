@@ -32,6 +32,15 @@ const Date Date::currentDate() {	//returns the current date
 	struct tm& t( *localtime(&now));
     return Date( t.tm_mday, t.tm_mon + 1,  t.tm_year + 1900);
 }
+bool Date::isValid(Date cd) const {
+	if (*this < cd)
+		return false;
+	else if (!(*this < currentDate()) && (*this != currentDate()))
+		return false;
+	else
+		return true;
+}
+
 void Date::setDate( int d, int m, int y) {
 	day_ = d;
 	month_ = m;

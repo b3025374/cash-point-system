@@ -28,6 +28,7 @@ public:
 	TransactionList getTransactionsForAmount(const double a) const;
 	TransactionList getTransactionsForTitle(const string title) const;
 	TransactionList getTransactionsForDate(const Date d) const;
+	TransactionList getTransactionsUpToDate(const Date d) const;
 	double getTotalTransactions() const;
 	int	getNumberOfTransactions() const;
 

@@ -179,6 +179,12 @@ void BankAccount::produceTransactionsForDate(const Date d, string& str, int& n) 
 	n = trl.getNumberOfTransactions();
 	str = trl.toFormattedString();
 }
+
+void BankAccount::produceTransactionsUpToDate(const Date d, string& str, int& i) {
+	TransactionList trl = transactions_.getTransactionsUpToDate(d);
+	i = trl.size();
+	str = trl.toFormattedString();
+}
 //---------------------------------------------------------------------------
 //non-member operator functions
 //---------------------------------------------------------------------------

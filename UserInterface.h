@@ -35,6 +35,8 @@ public:
 	const string  readInAccountToBeProcessed( string& aNum, string& sCod) const;
 	void	showValidateAccountOnScreen( int valid, const string& aNum, const string& sCod) const;
 	void	showNoTransactionsOnScreen() const;
+	void	showTransactionsUpToDateOnScreen(const bool noTransaction, const Date d, const int i, const string str) const;
+	void	showDeletionOfTransactionUpToDateOnScreen(const int i, const Date d, const bool deletionConfirmed) const;
 
     double	readInWithdrawalAmount() const;
     double	readInDepositAmount() const;
@@ -42,6 +44,8 @@ public:
 	string	readInSearchTitle() const;
 	Date	readInDate() const;
 	int		readInSearch(const bool noTrans) const;
+	Date	readInValidDate(const Date cd) const;
+	bool	readInConfimedDeletion() const;
 
     void	showProduceBalanceOnScreen( double bal) const;
     void	showDepositOnScreen( bool auth, double deposit) const;

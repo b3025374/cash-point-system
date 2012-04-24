@@ -141,6 +141,20 @@ TransactionList TransactionList::getTransactionsForDate(const Date d) const {
 	}
 	return trl;
 }
+TransactionList TransactionList::getTransactionsUpToDate(const Date d) const {
+	TransactionList trl;
+	TransactionList copy(*this);
+	Transaction temp;
+
+	for(int i(0); i < size(); i++) {
+		temp = copy.newestTransaction();
+		if(temp.getDate() < d || temp.getDate() == d)
+			trl.addNewTransaction(temp);
+		copy.deleteFirstTransaction();
+	}
+	return trl;
+}
+
 double TransactionList::getTotalTransactions() const {
 	double total( 0);
 	TransactionList copy(*this);
