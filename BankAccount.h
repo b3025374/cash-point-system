@@ -23,7 +23,7 @@ public:
     BankAccount( const string& typ, const string& acctNum, const string& sCode,
                           const Date& cD, double b,
                           const TransactionList& trList);
-    ~BankAccount();
+    virtual ~BankAccount();
 
 	//getter (assessor) functions
 	const string getAccountType() const;
@@ -42,15 +42,15 @@ public:
 	void recordDeletionOfTransactionUpToDate(const Date d);
 
 	//functions to put data into and get data from streams
-	ostream& putDataInStream( ostream& os) const;
-	istream& getDataFromStream( istream& is);
+	virtual ostream& putDataInStream( ostream& os) const;// =0;
+	virtual istream& getDataFromStream( istream& is);// =0;
 
 	//other operations
 	const string prepareFormattedStatement() const;
 
     void recordDeposit( double amount);
 
-	double borrowable() const;
+	virtual double borrowable() const = 0;
 	bool canWithdraw( double amount) const;
     void recordWithdrawal( double amount);
 

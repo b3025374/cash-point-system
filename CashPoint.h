@@ -8,8 +8,13 @@
 //CashPoint: class declaration
 //---------------------------------------------------------------------------
 
-#include "CashCard.h"
+
 #include "BankAccount.h"
+#include "CashCard.h"
+#include "ChildAccount.h"
+#include "CurrentAccount.h"
+#include "ISAaccount.h"
+#include "SavingsAccount.h"
 #include "UserInterface.h"
 
 #include <fstream>
