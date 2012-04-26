@@ -304,11 +304,26 @@ BankAccount* CashPoint::activateBankAccount(  const string& aBAFileName) {
 	BankAccount* p_BA( nullptr);
 	switch( accType)
     {
-     	case BANKACCOUNT_TYPE:	//NOT NEEDED WITH ABSTRACT CLASSES
-        	cout << "\n-------BANK-------\n";
-    		p_BA = new BankAccount;    //points to a BankAccount object
-       		p_BA->readInBankAccountFromFile( aBAFileName); //read account details from file
-			break;
+   //  	case BANKACCOUNT_TYPE:	//NOT NEEDED WITH ABSTRACT CLASSES
+   //     	cout << "\n-------BANK-------\n";
+   // 		p_BA = new BankAccount;    //points to a BankAccount object
+   //    		p_BA->readInBankAccountFromFile( aBAFileName); //read account details from file
+			//break;
+		case CURRENTACCOUNT_TYPE:
+			cout << "\n-------BANK-------\n";
+    		p_BA = new CurrentAccount;    //points to a BankAccount object
+      		p_BA->readInBankAccountFromFile( aBAFileName); //read account details from file
+		break;
+		case CHILDACCOUNT_TYPE:
+			cout << "\n-------BANK-------\n";
+    		p_BA = new ChildAccount;    //points to a BankAccount object
+      		p_BA->readInBankAccountFromFile( aBAFileName); //read account details from file
+		break;
+		case ISAACCOUNT_TYPE:
+			cout << "\n-------BANK-------\n";
+    		p_BA = new ISAaccount;    //points to a BankAccount object
+      		p_BA->readInBankAccountFromFile( aBAFileName); //read account details from file
+		break;
     }
 	//use dynamic memory allocation: the bank account created will have to be released in releaseBankAccount
 	return p_BA;
