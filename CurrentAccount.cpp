@@ -46,7 +46,7 @@ istream& CurrentAccount::getDataFromStream( istream& is) {
 
 double CurrentAccount::borrowable() const {
 //return borrowable amount
-    return getBalance();
+    return getBalance() + getOverdraftLimit();
 }
 
 double CurrentAccount::getOverdraftLimit() const {

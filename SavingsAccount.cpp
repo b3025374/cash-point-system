@@ -11,7 +11,7 @@ SavingsAccount::~SavingsAccount(void)
 
 double SavingsAccount::borrowable() const {
 //return borrowable amount
-    return getBalance();
+    return getBalance() - getMinimumBalance();
 }
 
 double SavingsAccount::getMinimumBalance() const {
