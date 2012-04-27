@@ -41,6 +41,14 @@ public:
 	void produceTransactionsUpToDate(const Date d, string& str, int& i);
 	void recordDeletionOfTransactionUpToDate(const Date d);
 
+	//setters
+	void setAccountType(string);
+    void setAccountNumber(string);
+    void setSortCode(string);
+    void setCreationDate(Date);
+	void setBalance(double);
+    void setTransactions(TransactionList);
+
 	//functions to put data into and get data from streams
 	virtual ostream& putDataInStream( ostream& os) const;// =0;
 	virtual istream& getDataFromStream( istream& is);// =0;

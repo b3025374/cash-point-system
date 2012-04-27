@@ -13,3 +13,11 @@ double SavingsAccount::borrowable() const {
 //return borrowable amount
     return getBalance();
 }
+
+double SavingsAccount::getMinimumBalance() const {
+	return minimumBalance_;
+}
+
+void SavingsAccount::setMinimumBalance(const double d) {
+	minimumBalance_ = d;
+}

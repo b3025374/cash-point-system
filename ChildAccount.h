@@ -10,8 +10,8 @@ public:
 	virtual ~ChildAccount(void);
 
 	//functions to put data into and get data from streams
-	//virtual ostream& putDataInStream( ostream& os) const;
-	//virtual istream& getDataFromStream( istream& is);
+	virtual ostream& putDataInStream( ostream& os) const;
+	virtual istream& getDataFromStream( istream& is);
 
 	double getMinimumPaidIn() const;
 	double getMaximumPaidIn() const;
