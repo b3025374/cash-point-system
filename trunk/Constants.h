@@ -10,8 +10,9 @@ const int QUIT_COMMAND( 0);
 //account type
 const int BANKACCOUNT_TYPE( 0);
 const int CURRENTACCOUNT_TYPE( 1);
-const int CHILDACCOUNT_TYPE( 2);
-const int ISAACCOUNT_TYPE( 3);
+const int SAVINGSACCOUNT_TYPE( 2);
+const int CHILDACCOUNT_TYPE( 3);
+const int ISAACCOUNT_TYPE( 4);
 
 //account state
 const int VALID_ACCOUNT( 0);

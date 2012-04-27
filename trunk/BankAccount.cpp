@@ -189,6 +189,27 @@ void BankAccount::produceTransactionsUpToDate(const Date d, string& str, int& i)
 void BankAccount::recordDeletionOfTransactionUpToDate(const Date d) {
 	transactions_.deleteTransactionsUpToDate(d);
 }
+
+//setters
+void BankAccount::setAccountType(string s) {
+	accountType_ = s;
+}
+void BankAccount::setAccountNumber(string s) {
+	accountNumber_ = s;
+}
+void BankAccount::setSortCode(string s) {
+	sortCode_ = s;
+}
+void BankAccount::setCreationDate(Date d) {
+	creationDate_ = d;
+}
+void BankAccount::setBalance(double d) {
+	balance_ = d;
+}
+void BankAccount::setTransactions(TransactionList tl) {
+	transactions_ = tl;
+}
+
 //---------------------------------------------------------------------------
 //non-member operator functions
 //---------------------------------------------------------------------------

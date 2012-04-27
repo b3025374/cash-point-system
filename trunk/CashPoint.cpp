@@ -323,7 +323,7 @@ BankAccount* CashPoint::activateBankAccount(  const string& aBAFileName) {
 			cout << "\n-------BANK-------\n";
     		p_BA = new ISAaccount;    //points to a BankAccount object
       		p_BA->readInBankAccountFromFile( aBAFileName); //read account details from file
-		break;
+		//break;
     }
 	//use dynamic memory allocation: the bank account created will have to be released in releaseBankAccount
 	return p_BA;
