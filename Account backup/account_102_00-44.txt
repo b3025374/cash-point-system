@@ -1,0 +1,9 @@
+CURRENT
+102
+00-44
+10/12/2005
+200
+100
+16/ 2/2011 07:44:32 deposit_to_ATM 5
+16/ 2/2011 07:44:24 withdrawal_from_ATM -12
+ 3/ 2/2011 08:41:52 withdrawal_from_ATM -123.45
