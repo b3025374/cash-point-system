@@ -63,6 +63,14 @@ void BankAccount::recordDeposit( double amountToDeposit) {
     updateBalance( amountToDeposit);			//increase balance_
 }
 
+void BankAccount::recordTransferDeposit( const string& account_details, double amountToDeposit) {
+    //create a deposit transaction
+	Transaction aTransaction( ("transfer_in_from_acct_"+account_details), amountToDeposit);
+    //update active bankaccount
+    transactions_.addNewTransaction( aTransaction);		//update transactions_
+    updateBalance( amountToDeposit);			//increase balance_
+}
+
 double BankAccount::borrowable() const {
 //return borrowable amount
     return balance_;
@@ -75,6 +83,14 @@ bool BankAccount::canWithdraw( double amountToWithdraw ) const {
 void BankAccount::recordWithdrawal( double amountToWithdraw) {
 	//create a withdrawal transaction
     Transaction aTransaction( "withdrawal_from_ATM", -amountToWithdraw);
+    //update active bankaccount
+    transactions_.addNewTransaction( aTransaction);		//update transactions_
+    updateBalance( -amountToWithdraw);			//decrease balance_
+}
+
+void BankAccount::recordTransferWithdrawal( const string& account_details, double amountToWithdraw) {
+	//create a withdrawal transaction
+    Transaction aTransaction( ("transfer_out_from_acct_"+account_details), -amountToWithdraw);
     //update active bankaccount
     transactions_.addNewTransaction( aTransaction);		//update transactions_
     updateBalance( -amountToWithdraw);			//decrease balance_

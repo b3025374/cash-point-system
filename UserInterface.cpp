@@ -99,16 +99,20 @@ const string UserInterface::readInAccountToBeProcessed( string& anAccountNumber,
 void UserInterface::showValidateAccountOnScreen( int validCode, const string& accNum, const string& srtCode) const {
     switch( validCode)
     {
-    	case VALID_ACCOUNT:		//account valid: it exists, is accessible with that card (and not already open: TO BE IMPLEMENTED)
+    	case VALID_ACCOUNT:		//account valid: it exists, is accessible with that card
         	cout << "\nTHE ACCOUNT (NUMBER: " << accNum
              	 << " CODE: " << srtCode << ") IS NOW OPEN!";
+            break;
+		case ALREADY_OPEN_ACCOUNT:		//account valid: it exists, is accessible with that card but is already open
+        	cout << "\nTHE ACCOUNT (NUMBER: " << accNum
+             	 << " CODE: " << srtCode << ") IS ALREADY OPEN!";
             break;
     	case UNKNOWN_ACCOUNT:		//account does not exist
         	cout << "\nERROR: INVALID ACCOUNT"
                  << "\nTHE ACCOUNT (NUMBER: " << accNum
                  << " CODE: " << srtCode << ") DOES NOT EXIST!";
             break;
-    	case UNACCESSIBLE_ACCOUNT:		//account exists but is not accessible with that card
+    	case INACCESSIBLE_ACCOUNT:		//account exists but is not accessible with that card
         	cout << "\nERROR: INVALID ACCOUNT"
              	 << "\nTHE ACCOUNT (NUMBER: " << accNum
              	 << " CODE: " << srtCode << ") IS NOT ACCESSIBLE WITH THIS CARD!";
@@ -138,6 +142,25 @@ void UserInterface::showDeletionOfTransactionUpToDateOnScreen(const int i, const
 	}
 }
 
+void UserInterface::show_validate_transfer_on_screen( const int& valid) const {
+	if( valid == TRANSFER_VALID)
+		cout << "THE TRANSFER IS VALID\n";
+	else {
+		cout << "TRANSFER CANCELLED\n";
+
+		if( valid == INVALID_WITHDRAWAL_DEPOSIT)
+			cout << "INVALID: INSUFFICIENT FUNDS AND UNABLE TO DEPOSIT\n";
+		else if( valid == INVALID_WITHDRAWAL)
+			cout << "INVALID: INSUFFICIENT FUNDS\n";
+		else if( valid == INVALID_DEPOSIT)
+			cout << "INVALID: TOO MUCH TO DEPOSIT\n";
+	}
+}
+
+void UserInterface::show_valid_transfer_on_screen() const {
+	cout << "TRANSFER SUCCESSFUL\n";
+}
+
 //input functions
 
 double UserInterface::readInWithdrawalAmount() const {
@@ -148,6 +171,11 @@ double UserInterface::readInWithdrawalAmount() const {
 double UserInterface::readInDepositAmount() const {
     //ask for the amount to deposit
     cout << "\nAMOUNT TO DEPOSIT: \234" ;
+	return ( readInPositiveAmount());
+}
+double UserInterface::readInTransferAmount() const {
+    //ask for the amount to transfer
+    cout << "\nAMOUNT TO TRANSFER: \234" ;
 	return ( readInPositiveAmount());
 }
 double UserInterface::readInAmount() const {

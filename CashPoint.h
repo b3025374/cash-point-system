@@ -62,6 +62,9 @@ private:
 	void m7c_showTransactionsForDate() const;
 	//option 8
 	void m8_clearAllTransactionsUpToDate() const;
+	// option 9
+	void m9_transfer_money();
+	void m9_validate_transfer_amount( int& valid, const bool& withdraw, const bool& deposit);
 
     //support file handling functions & creation of dynamic objects
     bool canOpenFile( const string&) const;

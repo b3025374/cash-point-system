@@ -68,6 +68,11 @@ void ISAaccount::recordDeposit( double amountToDeposit) {
 	currentYearlyDeposit_ += amountToDeposit;
 }
 
+void ISAaccount::recordTransferDeposit( const string& account_details, double amountToDeposit) {
+	BankAccount::recordTransferDeposit( account_details, amountToDeposit);
+	currentYearlyDeposit_ += amountToDeposit;
+}
+
 //getters
 double ISAaccount::getMaximumYearlyDeposit() const {
 	return maximumYearlyDeposit_;

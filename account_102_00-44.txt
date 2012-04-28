@@ -2,8 +2,9 @@ CURRENT
 102
 00-44
 10/12/2005
-200
+204
 100
+28/ 4/2012 19:29:56 transfer_in_from_acct_101_00-44 4
 16/ 2/2011 07:44:32 deposit_to_ATM 5
 16/ 2/2011 07:44:24 withdrawal_from_ATM -12
  3/ 2/2011 08:41:52 withdrawal_from_ATM -123.45
