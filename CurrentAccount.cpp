@@ -55,3 +55,17 @@ double CurrentAccount::borrowable() const {
 double CurrentAccount::getOverdraftLimit() const {
 	return overdraftLimit_;
 }
+
+const string CurrentAccount::prepareFormattedAccountDetails() const {
+	//collect account details in string
+	ostringstream os;
+	//account details
+	os << "\nACCOUNT TYPE:    " << getAccountType() << " ACCOUNT";						//display account type
+	os << "\nACCOUNT NUMBER:  " << getAccountNumber();									//display account number
+	os << "\nSORT CODE:       " << getSortCode();										//display sort code
+	os << "\nCREATION DATE:   " << getCreationDate().toFormattedString();				//display creation date
+	os << fixed << setprecision(2) << setfill(' ');
+	os << "\nBALANCE:         \234" << setw(10) << getBalance();	//display balance
+	os << "\nOVERDRAFT:       \234" << setw(10) << overdraftLimit_;	//displau overdraft
+	return ( os.str());
+}
