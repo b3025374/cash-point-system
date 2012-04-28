@@ -57,7 +57,7 @@ public:
 	const string prepareFormattedStatement() const;
 
 	virtual bool canDeposit( double amount) const =0;
-    void recordDeposit( double amount);
+    virtual void recordDeposit( double amount);
 
 	virtual double borrowable() const = 0;
 	bool canWithdraw( double amount) const;
@@ -77,7 +77,7 @@ private:
  
 	//support functions
 	void updateBalance( double amount);
-	const string prepareFormattedAccountDetails() const;
+	virtual const string prepareFormattedAccountDetails() const =0;
 };
 
 //---------------------------------------------------------------------------

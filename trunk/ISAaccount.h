@@ -15,12 +15,14 @@ public:
 	virtual istream& getDataFromStream( istream& is);
 
 	virtual bool canDeposit( double amount) const;
+	virtual void recordDeposit( double amount);
 
 	double getMaximumYearlyDeposit() const;
 	double getCurrentYearlyDeposit() const;
 	Date getEndDepositPeriod() const;
 private:
 	void updateCurrentYearlyDeposit(const double a);
+	virtual const string prepareFormattedAccountDetails() const;
 	Date endDepositPeriod_;
 	double maximumYearlyDeposit_;
 	double currentYearlyDeposit_;

@@ -61,3 +61,19 @@ double ChildAccount::getMinimumPaidIn() const {
 double ChildAccount::getMaximumPaidIn() const {
 	return maximumPaidIn_;
 }
+
+const string ChildAccount::prepareFormattedAccountDetails() const {
+	//collect account details in string
+	ostringstream os;
+	//account details
+	os << "\nACCOUNT TYPE:    " << getAccountType() << " ACCOUNT";						//display account type
+	os << "\nACCOUNT NUMBER:  " << getAccountNumber();									//display account number
+	os << "\nSORT CODE:       " << getSortCode();										//display sort code
+	os << "\nCREATION DATE:   " << getCreationDate().toFormattedString();				//display creation date
+	os << fixed << setprecision(2) << setfill(' ');
+	os << "\nMINIMUM PAID IN: \234" << minimumPaidIn_;				//display the minimum pay in allowed
+	os << "\nMAXIMUM PAID IN: \234" << maximumPaidIn_;				//display the maximum pay in allowed
+	os << "\nBALANCE:         \234" << setw(10) << getBalance();	//display balance
+	os << "\nMINIMUM BALANCE: \234" << setw(10) << getMinimumBalance();	//display minimum balance
+	return ( os.str());
+}

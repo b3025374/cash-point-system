@@ -18,6 +18,7 @@ public:
 	double getMinimumPaidIn() const;
 	double getMaximumPaidIn() const;
 private:
+	virtual const string prepareFormattedAccountDetails() const;
 	double minimumPaidIn_;
 	double maximumPaidIn_;
 };

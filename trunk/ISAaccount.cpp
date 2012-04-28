@@ -63,6 +63,11 @@ bool ISAaccount::canDeposit( double amount) const {
 		return false;
 }
 
+void ISAaccount::recordDeposit( double amountToDeposit) {
+    BankAccount::recordDeposit(amountToDeposit);
+	currentYearlyDeposit_ += amountToDeposit;
+}
+
 //getters
 double ISAaccount::getMaximumYearlyDeposit() const {
 	return maximumYearlyDeposit_;
@@ -72,4 +77,21 @@ double ISAaccount::getCurrentYearlyDeposit() const {
 }
 Date ISAaccount::getEndDepositPeriod() const {
 	return endDepositPeriod_;
+}
+
+const string ISAaccount::prepareFormattedAccountDetails() const {
+	//collect account details in string
+	ostringstream os;
+	//account details
+	os << "\nACCOUNT TYPE:    " << getAccountType() << " ACCOUNT";						//display account type
+	os << "\nACCOUNT NUMBER:  " << getAccountNumber();									//display account number
+	os << "\nSORT CODE:       " << getSortCode();										//display sort code
+	os << "\nCREATION DATE:   " << getCreationDate().toFormattedString();				//display creation date
+	os << "\nEND OF DEPOSIT PERIOD: " << endDepositPeriod_.toFormattedString();			//display end deposit period date
+	os << fixed << setprecision(2) << setfill(' ');
+	os << "\nMAXIMUM YEARLY DEPOSIT: " << maximumYearlyDeposit_;	//display maximum yearly deposit
+	os << "\nCURRENT YEARLY DEPOSIT: " << currentYearlyDeposit_;	//display current yearly deposit
+	os << "\nBALANCE:         \234" << setw(10) << getBalance();	//display balance
+	os << "\nMINIMUM BALANCE: \234" << setw(10) << getMinimumBalance();	//display minimum balance
+	return ( os.str());
 }
