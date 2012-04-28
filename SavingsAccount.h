@@ -14,7 +14,7 @@ public:
 	virtual istream& getDataFromStream( istream& is) =0;
 
 	virtual bool canDeposit( double amount) const =0;
-	double borrowable() const;
+	virtual double borrowable() const;
 	double getMinimumBalance() const;
 	void setMinimumBalance(const double);
 private:
