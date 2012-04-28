@@ -14,6 +14,8 @@ public:
 	virtual ostream& putDataInStream( ostream& os) const;
 	virtual istream& getDataFromStream( istream& is);
 
+	virtual bool canDeposit( double amount) const;
+
 	double getMaximumYearlyDeposit() const;
 	double getCurrentYearlyDeposit() const;
 	Date getEndDepositPeriod() const;

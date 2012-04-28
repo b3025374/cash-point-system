@@ -48,6 +48,13 @@ istream& ChildAccount::getDataFromStream( istream& is) {
 	return is;
 }
 
+bool ChildAccount::canDeposit( double amount) const {
+	if (amount > getMinimumPaidIn() && amount < getMaximumPaidIn())
+		return true;
+	else
+		return false;
+}
+
 double ChildAccount::getMinimumPaidIn() const {
 	return minimumPaidIn_;
 }

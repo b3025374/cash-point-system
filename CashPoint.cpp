@@ -167,8 +167,12 @@ void CashPoint::m2_withdrawFromBankAccount() {
 //---option 3
 void CashPoint::m3_depositToBankAccount() {
     double amountToDeposit( theUI_.readInDepositAmount());
-    p_theActiveAccount_->recordDeposit( amountToDeposit);
-    theUI_.showDepositOnScreen( true, amountToDeposit);
+	bool transactionAuthorised( p_theActiveAccount_->canDeposit( amountToDeposit));
+	if ( transactionAuthorised)
+	{
+		p_theActiveAccount_->recordDeposit( amountToDeposit);
+	}
+    theUI_.showDepositOnScreen( transactionAuthorised, amountToDeposit);
 }
 //---option 4
 void CashPoint::m4_produceStatement() const {

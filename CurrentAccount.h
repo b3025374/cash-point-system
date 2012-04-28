@@ -13,6 +13,7 @@ public:
 	virtual ostream& putDataInStream( ostream& os) const;
 	virtual istream& getDataFromStream( istream& is);
 
+	virtual bool canDeposit( double amount) const;
 	virtual double borrowable() const;
 	double getOverdraftLimit() const;
 private:
