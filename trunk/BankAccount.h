@@ -56,11 +56,12 @@ public:
 	//other operations
 	const string prepareFormattedStatement() const;
 
+	virtual bool canDeposit( double amount) const =0;
     void recordDeposit( double amount);
 
 	virtual double borrowable() const = 0;
 	bool canWithdraw( double amount) const;
-    void recordWithdrawal( double amount);
+    virtual void recordWithdrawal( double amount);
 
 	void readInBankAccountFromFile( const string& fileName);
 	void storeBankAccountInFile( const string& fileName) const;

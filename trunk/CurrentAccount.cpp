@@ -43,6 +43,9 @@ istream& CurrentAccount::getDataFromStream( istream& is) {
 	setTransactions(transactions);
 	return is;
 }
+bool CurrentAccount::canDeposit( double amount) const {
+	return true;
+}
 
 double CurrentAccount::borrowable() const {
 //return borrowable amount

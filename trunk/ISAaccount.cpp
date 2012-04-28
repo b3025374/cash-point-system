@@ -53,6 +53,16 @@ istream& ISAaccount::getDataFromStream( istream& is) {
 	return is;
 }
 
+bool ISAaccount::canDeposit( double amount) const {
+	if (getCurrentYearlyDeposit()+amount <= getMaximumYearlyDeposit() 
+			&& Date::currentDate() < getEndDepositPeriod())
+	{
+		return true;
+	}
+	else
+		return false;
+}
+
 //getters
 double ISAaccount::getMaximumYearlyDeposit() const {
 	return maximumYearlyDeposit_;
