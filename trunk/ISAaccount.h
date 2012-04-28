@@ -16,6 +16,7 @@ public:
 
 	virtual bool canDeposit( double amount) const;
 	virtual void recordDeposit( double amount);
+	virtual void recordTransferDeposit( const string& account_details, double amountToDeposit);
 
 	double getMaximumYearlyDeposit() const;
 	double getCurrentYearlyDeposit() const;

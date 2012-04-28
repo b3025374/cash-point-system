@@ -86,9 +86,11 @@ int CashPoint::validateAccount( const string& bankAccountFileName) const {
 		//account does not exist
 		validCode = UNKNOWN_ACCOUNT;
 	else
+		if( p_theActiveAccount_ != nullptr && (( "account_" + p_theActiveAccount_->getAccountNumber() + "_" + p_theActiveAccount_->getSortCode() + ".txt") == bankAccountFileName))
+			validCode = ALREADY_OPEN_ACCOUNT;
 	  	//unaccessible account (exist0 but not listed on card)
-		if ( ! p_theCashCard_->onCard( bankAccountFileName))     
-    		validCode = UNACCESSIBLE_ACCOUNT;
+		else if ( ! p_theCashCard_->onCard( bankAccountFileName))     
+    		validCode = INACCESSIBLE_ACCOUNT;
 		else
 			//account valid (exists) and accessible
        		validCode = VALID_ACCOUNT;
@@ -144,6 +146,8 @@ void CashPoint::performAccountProcessingCommand( int option) {
 		case 7: m7_seachTransactions();
 				break;
 		case 8: m8_clearAllTransactionsUpToDate();
+				break;
+		case 9: m9_transfer_money();
 				break;
 		default:theUI_.showErrorInvalidCommand();
 	}
@@ -265,6 +269,58 @@ void CashPoint::m8_clearAllTransactionsUpToDate() const {
 		theUI_.showDeletionOfTransactionUpToDateOnScreen(i,d,deletionConfirmed);
 	}
 }
+
+// FUNCTION - m9_transfer_money
+// transfers money from one account to another, provided they are associated with the same card
+void CashPoint::m9_transfer_money() {
+	string account_number, account_sort_code;
+
+	// display all the accounts attached to the current card
+	theUI_.showCardOnScreen( p_theCashCard_->toFormattedString());
+	
+	// acquire the destination account, ensure it's valid and then display the results of the validation process
+	string destination_account_file_name( theUI_.readInAccountToBeProcessed( account_number, account_sort_code));
+    int valid_account_code( validateAccount( destination_account_file_name));
+    theUI_.showValidateAccountOnScreen( valid_account_code, account_number, account_sort_code);
+
+	if( valid_account_code == VALID_ACCOUNT) {
+		// create a pointer to the account that is to receive the transferred money
+		BankAccount* p_destination_account( activateBankAccount( destination_account_file_name));
+		
+		// ask how much the user wants to transfer (must be a positive number)
+		double transfer_amount = theUI_.readInTransferAmount();
+
+		// ensure that the amount can be extracted and deposited, and output an appropriate verification message
+		int valid_amount( 0);
+		m9_validate_transfer_amount( valid_amount, p_theActiveAccount_->canWithdraw( transfer_amount), p_destination_account->canDeposit( transfer_amount));
+		theUI_.show_validate_transfer_on_screen( valid_amount);
+
+		// if the transfer is valid then record the transfer in both accounts' histories
+		if( valid_amount == TRANSFER_VALID) {
+			p_theActiveAccount_->recordTransferWithdrawal( (p_destination_account->getAccountNumber() + "_" + p_destination_account->getSortCode()), transfer_amount);
+			p_destination_account->recordTransferDeposit( (p_theActiveAccount_->getAccountNumber() + "_" + p_theActiveAccount_->getSortCode()), transfer_amount);
+
+			// state to the user that the transfer was successful
+			theUI_.show_valid_transfer_on_screen();
+		}
+
+		releaseBankAccount( p_destination_account, destination_account_file_name);
+	}
+}
+
+// FUNCTION - m9_validate_transfer_amount
+// check that the amount can be transferred from one account to another
+void CashPoint::m9_validate_transfer_amount( int& valid, const bool& withdraw, const bool& deposit) {
+	if( withdraw && deposit)
+		valid = TRANSFER_VALID;
+	else if( !withdraw && !deposit)
+		valid = INVALID_WITHDRAWAL_DEPOSIT;
+	else if( !withdraw)
+		valid = INVALID_WITHDRAWAL;
+	else if( !deposit)
+		valid = INVALID_DEPOSIT;
+}
+
 //------private file functions
 
 bool CashPoint::canOpenFile( const string& st) const {

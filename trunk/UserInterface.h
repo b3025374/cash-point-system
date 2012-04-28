@@ -37,9 +37,12 @@ public:
 	void	showNoTransactionsOnScreen() const;
 	void	showTransactionsUpToDateOnScreen(const bool noTransaction, const Date d, const int i, const string str) const;
 	void	showDeletionOfTransactionUpToDateOnScreen(const int i, const Date d, const bool deletionConfirmed) const;
+	void	show_validate_transfer_on_screen( const int& valid) const;
+	void	show_valid_transfer_on_screen() const;
 
     double	readInWithdrawalAmount() const;
     double	readInDepositAmount() const;
+	double	readInTransferAmount() const;
 	double	readInAmount() const;
 	string	readInSearchTitle() const;
 	Date	readInDate() const;

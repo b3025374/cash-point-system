@@ -58,10 +58,12 @@ public:
 
 	virtual bool canDeposit( double amount) const =0;
     virtual void recordDeposit( double amount);
+	virtual void recordTransferDeposit( const string& account_details, double amount);
 
 	virtual double borrowable() const = 0;
 	bool canWithdraw( double amount) const;
-    virtual void recordWithdrawal( double amount);
+    void recordWithdrawal( double amount);
+	void recordTransferWithdrawal( const string& account_details, double amount);
 
 	void readInBankAccountFromFile( const string& fileName);
 	void storeBankAccountInFile( const string& fileName) const;
