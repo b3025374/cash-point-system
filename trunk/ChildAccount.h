@@ -1,3 +1,5 @@
+// Updated by: Antony Marsden, Tom Pearson and Edward Willoughby
+
 #if !defined ChildAccountH
 #define ChildAccountH
 
