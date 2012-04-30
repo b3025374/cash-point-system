@@ -1,4 +1,5 @@
 //Pascale Vacher - March 12
+// Updated by: Antony Marsden, Tom Pearson and Edward Willoughby
 //OOP Assignment Semester 2
 
 #include "CashCard.h"
