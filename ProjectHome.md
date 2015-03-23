@@ -1,0 +1,1 @@
+Command line based cash point system created with C++
